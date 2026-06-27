@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <title>TerSpegelt Hub</title>
 
+  <!-- ✨ Better font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       color: white;
 
       background-image: url("terspegelt.jpg");
@@ -17,17 +20,17 @@
       background-attachment: fixed;
     }
 
-    /* OVERLAY (stronger + cleaner) */
+    /* OVERLAY */
     .overlay {
       min-height: 100vh;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.78);
     }
 
     /* NAVBAR */
     .navbar {
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 28px;
       padding: 15px;
 
       background: rgba(17, 24, 39, 0.75);
@@ -40,7 +43,7 @@
     .navbar a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
       opacity: 0.85;
       transition: 0.2s;
     }
@@ -62,22 +65,59 @@
     }
 
     .hero h1 {
-      font-size: 3.2rem;
+      font-size: 3.4rem;
       margin-bottom: 10px;
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+      text-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+      font-weight: 700;
     }
 
     .hero p {
       font-size: 1.2rem;
       opacity: 0.9;
-      margin-bottom: 20px;
-      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
+      margin-bottom: 25px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    }
+
+    /* STATUS CARD */
+    .status {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 15px 25px;
+      border-radius: 14px;
+      backdrop-filter: blur(8px);
+      margin-bottom: 25px;
+      font-weight: 600;
     }
 
     .hint {
       opacity: 0.75;
       font-size: 1rem;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    /* QUICK CARDS */
+    .cards {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 14px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.06);
+      background: rgba(255, 255, 255, 0.14);
     }
   </style>
 </head>
@@ -99,7 +139,22 @@
     <div class="hero">
       <h1>🏕️ TerSpegelt Hub</h1>
       <p>Alles voor de vakantie op één plek</p>
-      <div class="hint">Kies een sectie hierboven</div>
+
+      <div class="status">
+        Nog even tot vertrek ✈️
+      </div>
+
+      <div class="hint">
+        Kies een sectie hieronder
+      </div>
+
+      <div class="cards">
+        <a class="card" href="countdown.html">⏳ Countdown</a>
+        <a class="card" href="map.html">🗺️ Kaart</a>
+        <a class="card" href="weather.html">🌤️ Weer</a>
+        <a class="card" href="pics.html">📸 Foto's</a>
+      </div>
+
     </div>
 
   </div>

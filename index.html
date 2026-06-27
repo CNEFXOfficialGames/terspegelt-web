@@ -8,8 +8,19 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f172a;
       color: white;
+
+      background-image: url("assets/terspegelt.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    /* DARK OVERLAY */
+    .overlay {
+      background: rgba(0, 0, 0, 0.55);
+      min-height: 100vh;
     }
 
     /* NAVBAR */
@@ -18,7 +29,10 @@
       justify-content: center;
       gap: 25px;
       padding: 15px;
-      background: #111827;
+
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(8px);
+
       position: sticky;
       top: 0;
     }
@@ -33,12 +47,12 @@
 
     .navbar a:hover {
       opacity: 1;
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     /* HERO */
     .hero {
-      height: calc(100vh - 60px);
+      height: calc(100vh - 70px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -48,18 +62,18 @@
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       margin-bottom: 10px;
     }
 
     .hero p {
       font-size: 1.2rem;
-      opacity: 0.7;
+      opacity: 0.8;
       margin-bottom: 20px;
     }
 
     .hint {
-      opacity: 0.5;
+      opacity: 0.6;
       font-size: 1rem;
     }
   </style>
@@ -67,20 +81,26 @@
 
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="countdown.html">Countdown</a>
-    <a href="map.html">Kaart</a>
-    <a href="weather.html">Weer</a>
-  </div>
+  <div class="overlay">
 
-  <!-- HERO -->
-  <div class="hero">
-    <h1>🏕️ TerSpegelt Hub</h1>
-    <p>Alles voor de vakantie op één plek</p>
-    <div class="hint">Kies een sectie hierboven</div>
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <a href="countdown.html">Countdown</a>
+      <a href="map.html">Kaart</a>
+      <a href="weather.html">Weer</a>
+      <a href="pics.html">Pics</a>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <h1>🏕️ TerSpegelt Hub</h1>
+      <p>Alles voor de vakantie op één plek</p>
+      <div class="hint">Kies een sectie hierboven</div>
+    </div>
+
   </div>
 
 </body>
+</html>
 </html>

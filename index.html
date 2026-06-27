@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>TerSpegelt Hub</title>
 
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 15px;
+      background: #111827;
+      position: sticky;
+      top: 0;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      opacity: 0.8;
+      transition: 0.2s;
+    }
+
+    .navbar a:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* HERO */
+    .hero {
+      height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .hint {
+      opacity: 0.5;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="countdown.html">Countdown</a>
+    <a href="map.html">Kaart</a>
+    <a href="weather.html">Weer</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>🏕️ TerSpegelt Hub</h1>
+    <p>Alles voor de vakantie op één plek</p>
+    <div class="hint">Kies een sectie hierboven</div>
+  </div>
+
+</body>
+</html>

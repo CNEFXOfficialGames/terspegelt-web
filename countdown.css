@@ -1,1 +1,102 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
 
+  background-image: url("waterlodge.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 🌑 OVERLAY */
+.overlay {
+  min-height: 100vh;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+/* 🔝 NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding: 15px;
+
+  background: rgba(17, 24, 39, 0.72);
+  backdrop-filter: blur(12px);
+
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: 0.2s;
+}
+
+.navbar a:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* 📦 MAIN CONTAINER */
+.container {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ⏳ TITLE */
+.title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.9);
+}
+
+/* 📊 GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* 🧊 BOX */
+.box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  transition: 0.2s;
+}
+
+.box:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* 🔢 NUMBERS */
+.number {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+/* 🏷 LABELS */
+.label {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}

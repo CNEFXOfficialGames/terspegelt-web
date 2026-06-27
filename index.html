@@ -17,10 +17,10 @@
       background-attachment: fixed;
     }
 
-    /* DARK OVERLAY */
+    /* OVERLAY (stronger + cleaner) */
     .overlay {
-      background: rgba(0, 0, 0, 0.55);
       min-height: 100vh;
+      background: rgba(0, 0, 0, 0.75);
     }
 
     /* NAVBAR */
@@ -30,8 +30,8 @@
       gap: 25px;
       padding: 15px;
 
-      background: rgba(17, 24, 39, 0.7);
-      backdrop-filter: blur(8px);
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(10px);
 
       position: sticky;
       top: 0;
@@ -41,7 +41,7 @@
       color: white;
       text-decoration: none;
       font-weight: bold;
-      opacity: 0.8;
+      opacity: 0.85;
       transition: 0.2s;
     }
 
@@ -64,17 +64,20 @@
     .hero h1 {
       font-size: 3.2rem;
       margin-bottom: 10px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
     }
 
     .hero p {
       font-size: 1.2rem;
-      opacity: 0.8;
+      opacity: 0.9;
       margin-bottom: 20px;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
     }
 
     .hint {
-      opacity: 0.6;
+      opacity: 0.75;
       font-size: 1rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
@@ -102,5 +105,4 @@
   </div>
 
 </body>
-</html>
 </html>

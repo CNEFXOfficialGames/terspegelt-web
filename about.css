@@ -80,7 +80,7 @@ body {
 }
 
 /* =========================
-   📍 TIMELINE ITEM
+   📍 TIMELINE ITEM (FIXED WIDTH)
 ========================= */
 
 .timeline-item {
@@ -88,6 +88,7 @@ body {
   align-items: center;
   margin: 90px 0;
   position: relative;
+  width: 100%;
 }
 
 /* LEFT SIDE */
@@ -102,7 +103,7 @@ body {
 }
 
 /* =========================
-   🔵 DOT (CENTER ICON)
+   🔵 DOT
 ========================= */
 
 .dot {
@@ -154,7 +155,6 @@ body {
 
 /* =========================
    ✨ SCROLL ANIMATION
-   (works with about.js)
 ========================= */
 
 .fade {

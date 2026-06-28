@@ -40,17 +40,17 @@ body {
   transform: scale(1.08);
 }
 
-/* 📦 PAGE WRAPPER */
+/* 📦 PAGE WRAPPER (MORE AIR = IMPORTANT) */
 .container {
-  padding: 30px;
+  padding: 60px 20px;
   text-align: center;
 }
 
-/* 🌤️ TODAY HERO CARD */
+/* 🌤️ TODAY HERO SECTION (MADE MORE “LANDING PAGE”) */
 .today-card {
-  max-width: 750px;
-  margin: 30px auto;
-  padding: 35px;
+  max-width: 780px;
+  margin: 80px auto;   /* 👈 BIG SCROLL SPACE */
+  padding: 45px;
 
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -68,23 +68,23 @@ body {
 
 /* 🌡️ BIG TEMP */
 .temp {
-  font-size: 4.5rem;
+  font-size: 5rem;
   font-weight: 700;
-  margin: 10px 0;
+  margin: 15px 0;
   text-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
 /* 🌤️ WEATHER INFO TEXT */
 .weather-info {
   opacity: 0.85;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-size: 1.1rem;
 }
 
 /* ⚽🏊 ACTIVITIES BOX */
 .activity-box {
-  margin-top: 15px;
-  padding: 14px;
+  margin-top: 20px;
+  padding: 16px;
   border-radius: 14px;
 
   background: rgba(255, 255, 255, 0.06);
@@ -92,23 +92,24 @@ body {
 
   backdrop-filter: blur(10px);
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* 📅 SUBTITLE */
+/* 📅 SUBTITLE (FOR SCROLL HINT) */
 .subtitle {
-  margin-top: 25px;
+  margin-top: 120px;  /* 👈 CREATES SCROLL BREAK */
   opacity: 0.75;
   font-size: 1rem;
 }
 
-/* 📊 FORECAST GRID */
+/* 📊 FORECAST SECTION (CLEAR SECOND PAGE FEEL) */
 .forecast {
-  margin-top: 25px;
+  margin-top: 50px;
+  padding-bottom: 80px; /* 👈 ENDING SPACE */
 
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 14px;
 
   max-width: 1100px;
   margin-left: auto;
@@ -121,16 +122,18 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.12);
 
   border-radius: 14px;
-  padding: 12px;
+  padding: 14px;
 
   backdrop-filter: blur(10px);
 
   transition: 0.2s ease;
   cursor: default;
+
+  min-width: 110px;
 }
 
 .day:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -142,21 +145,25 @@ body {
 
 /* 📱 RESPONSIVE DESIGN */
 @media (max-width: 900px) {
-  .forecast {
-    grid-template-columns: repeat(3, 1fr);
+  .temp {
+    font-size: 4rem;
   }
 
-  .temp {
-    font-size: 3.8rem;
+  .today-card {
+    margin: 60px auto;
+  }
+
+  .forecast {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 500px) {
-  .forecast {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .temp {
     font-size: 3rem;
+  }
+
+  .forecast {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

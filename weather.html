@@ -54,57 +54,81 @@
 
     /* CONTAINER */
     .container {
-      padding: 30px;
+      padding: 60px 20px;
       text-align: center;
     }
 
     /* TODAY CARD */
     .today-card {
-      max-width: 700px;
-      margin: 30px auto;
-      padding: 30px;
+      max-width: 780px;
+      margin: 90px auto;
+      padding: 40px;
 
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 18px;
-      backdrop-filter: blur(12px);
 
+      backdrop-filter: blur(12px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
 
+    .today-title {
+      margin-bottom: 5px;
+    }
+
+    .today-subtitle {
+      opacity: 0.7;
+      margin-top: -5px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
     .temp {
-      font-size: 4rem;
+      font-size: 4.5rem;
       font-weight: 700;
       margin: 10px 0;
     }
 
     .weather-info {
       opacity: 0.85;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      font-size: 1.05rem;
     }
 
-    /* OUTDOOR ADVICE BOX (UPDATED IDEA) */
+    /* ACTIVITY BOX (FIXED READABILITY) */
     .activity-box {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 12px;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 14px;
+
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
+
+      line-height: 1.6;
+      white-space: pre-line;
+      text-align: left;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* TEXT */
+    /* SUBTITLE / BREAK */
     .subtitle {
-      margin-top: 20px;
-      opacity: 0.8;
+      margin-top: 140px;
+      opacity: 0.75;
+      font-size: 1rem;
     }
 
-    /* 7 DAY GRID */
+    /* FORECAST */
     .forecast {
-      margin-top: 20px;
+      margin-top: 50px;
+      padding-bottom: 100px;
+
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 10px;
-      max-width: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+
+      max-width: 1100px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -112,15 +136,39 @@
     .day {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 12px;
-      padding: 10px;
-      font-size: 0.9rem;
-      backdrop-filter: blur(8px);
+      border-radius: 14px;
+
+      padding: 14px;
+      backdrop-filter: blur(10px);
+
+      transition: 0.2s ease;
+    }
+
+    .day:hover {
+      transform: scale(1.06);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .day div {
+      margin: 4px 0;
     }
 
     .day-temp {
       font-weight: 600;
-      margin-top: 5px;
+      margin-top: 6px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .temp {
+        font-size: 3.8rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .temp {
+        font-size: 3rem;
+      }
     }
   </style>
 </head>
@@ -146,7 +194,9 @@
 
     <!-- TODAY -->
     <div class="today-card">
-      <h1>🌤️ Vandaag</h1>
+
+      <h1 class="today-title">🌤️ Vandaag</h1>
+      <div class="today-subtitle">TerSpegelt weer & activiteiten overzicht</div>
 
       <div class="temp" id="temp">--°C</div>
 
@@ -154,20 +204,18 @@
         Laden van weerdata...
       </div>
 
-      <!-- UPDATED: NOT ONLY SWIMMING ANYMORE -->
       <div class="activity-box" id="activityAdvice">
         Activiteitenadvies wordt geladen...
       </div>
     </div>
 
+    <!-- BREAK -->
     <div class="subtitle">
       Kijk hieronder voor de komende 7 dagen 👇
     </div>
 
-    <!-- 7 DAY FORECAST -->
-    <div class="forecast" id="forecast">
-      <!-- JS fills this later -->
-    </div>
+    <!-- FORECAST -->
+    <div class="forecast" id="forecast"></div>
 
   </div>
 

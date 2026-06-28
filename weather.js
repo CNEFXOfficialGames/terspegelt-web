@@ -2,10 +2,10 @@
 const lat = 51.37;
 const lon = 5.25;
 
-// 🌐 API URL (Open-Meteo)
-const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,weathercode,precipitation_probability_max&timezone=auto`;
+// 🌐 API
+const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,weathercode,precipitation_probability_max,windspeed_10m_max&timezone=auto`;
 
-// ☀️ WEATHER CODE TRANSLATOR
+// ☀️ WEATHER TEXT
 function getWeatherText(code) {
   if (code === 0) return "Helder ☀️";
   if (code <= 3) return "Gedeeltelijk bewolkt ⛅";
@@ -16,31 +16,45 @@ function getWeatherText(code) {
   return "Onweer ⛈️";
 }
 
-// 🏊 / ⚽ ACTIVITY ENGINE (YOUR IDEA 🔥)
-function getActivityAdvice(temp, rain, wind) {
-
-  if (rain > 70 || wind > 40) {
-    return "🌧️ Beter binnen blijven vandaag (spelletjes / chillen / indoor zwemmen)";
-  }
-
-  if (temp >= 24 && rain < 30 && wind < 25) {
-    return "☀️ Perfect om buiten te spelen én te zwemmen!";
-  }
-
-  if (temp >= 20 && rain < 40) {
-    return "⚽ Goed weer om buiten te spelen / wandelen / chillen";
-  }
-
-  if (rain < 20) {
-    return "🏊 Goed zwemweer en prima buiten om te spelen";
-  }
-
-  return "🏠 Binnen is ook een goede optie vandaag";
-}
-
-// 🌧️ RAIN TEXT FORMAT
+// 🌧️ FORMAT
 function rainText(value) {
   return `${value}% kans op regen 🌧️`;
+}
+
+// 🔥 ACTIVITY SCORES (0–10 SYSTEM)
+function calcScores(temp, rain, wind) {
+
+  // 🌡️ swimming score
+  let swim = 0;
+  if (temp >= 28) swim += 10;
+  else if (temp >= 24) swim += 8;
+  else if (temp >= 20) swim += 6;
+  else swim += 2;
+
+  swim -= rain / 10;
+  swim -= wind / 15;
+  swim = Math.max(0, Math.min(10, Math.round(swim)));
+
+  // ⚽ outside score
+  let outside = 10;
+  outside -= rain / 10;
+  outside -= wind / 20;
+  if (temp < 15) outside -= 3;
+  outside = Math.max(0, Math.min(10, Math.round(outside)));
+
+  // 🏠 indoor score
+  let indoor = 10 - outside;
+  indoor = Math.max(0, Math.min(10, indoor));
+
+  return { swim, outside, indoor };
+}
+
+// 🧠 VIBE SYSTEM
+function getVibe(score) {
+  if (score >= 8) return "🔥 Perfecte dag!";
+  if (score >= 6) return "😊 Goede dag";
+  if (score >= 4) return "😐 Prima";
+  return "🌧️ Niet ideaal";
 }
 
 // 🚀 FETCH WEATHER
@@ -52,43 +66,76 @@ fetch(url)
     const temps = data.daily.temperature_2m_max;
     const rain = data.daily.precipitation_probability_max;
     const codes = data.daily.weathercode;
+    const wind = data.daily.windspeed_10m_max;
 
-    // =========================
-    // 🌤️ TODAY (DAY 0)
-    // =========================
-    const todayTemp = temps[0];
-    const todayRain = rain[0];
-    const todayCode = codes[0];
+    // ======================
+    // 🌤️ TODAY
+    // ======================
+    const tTemp = temps[0];
+    const tRain = rain[0];
+    const tWind = wind[0];
+    const tCode = codes[0];
 
-    document.getElementById("temp").innerText = `${todayTemp}°C`;
+    const scores = calcScores(tTemp, tRain, tWind);
+    const vibeScore = Math.round((scores.swim + scores.outside) / 2);
+
+    document.getElementById("temp").innerText = `${Math.round(tTemp)}°C`;
 
     document.getElementById("weatherInfo").innerText =
-      `${getWeatherText(todayCode)} • ${rainText(todayRain)}`;
+      `${getWeatherText(tCode)} — ${rainText(tRain)} — 💨 ${Math.round(tWind)} km/h wind`;
 
     document.getElementById("activityAdvice").innerText =
-      getActivityAdvice(todayTemp, todayRain, 20);
+      `🏊 Zwemmen: ${scores.swim}/10
+⚽ Buiten: ${scores.outside}/10
+🏠 Binnen: ${scores.indoor}/10
+🔥 Vibe: ${getVibe(vibeScore)}`;
 
-    // =========================
-    // 📅 7 DAY FORECAST
-    // =========================
+    // ======================
+    // 📅 BEST DAY FINDER
+    // ======================
+    let bestDayIndex = 0;
+    let bestScore = -1;
+
+    for (let i = 0; i < 7; i++) {
+      const s = calcScores(temps[i], rain[i], wind[i]);
+      const score = s.swim + s.outside;
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestDayIndex = i;
+      }
+    }
+
+    // ======================
+    // 📅 FORECAST
+    // ======================
     const forecastDiv = document.getElementById("forecast");
     forecastDiv.innerHTML = "";
 
     for (let i = 0; i < 7; i++) {
 
       const date = new Date(days[i]);
-      const dayName = date.toLocaleDateString("nl-NL", { weekday: "short" });
+      const weekday = date.toLocaleDateString("nl-NL", { weekday: "short" });
+      const day = date.getDate();
+      const month = date.toLocaleDateString("nl-NL", { month: "long" });
+
+      const scores = calcScores(temps[i], rain[i], wind[i]);
+      const isBest = i === bestDayIndex;
 
       const el = document.createElement("div");
       el.className = "day";
 
       el.innerHTML = `
-        <div>${dayName}</div>
+        <div>${weekday}. ${day} ${month}</div>
         <div>${getWeatherText(codes[i])}</div>
-        <div class="day-temp">${temps[i]}°C</div>
+        <div class="day-temp">${Math.round(temps[i])}°C</div>
         <div style="font-size:0.8rem; opacity:0.8;">
           ${rainText(rain[i])}
         </div>
+        <div style="margin-top:5px; font-size:0.75rem;">
+          🏊 ${scores.swim}/10 ⚽ ${scores.outside}/10
+        </div>
+        ${isBest ? `<div style="margin-top:5px;">🏆 BEST DAY</div>` : ""}
       `;
 
       forecastDiv.appendChild(el);
@@ -97,7 +144,6 @@ fetch(url)
   })
   .catch(err => {
     console.error("Weather error:", err);
-
     document.getElementById("weatherInfo").innerText =
       "Kon weerdata niet laden 😢";
   });

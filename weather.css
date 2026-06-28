@@ -40,17 +40,17 @@ body {
   transform: scale(1.08);
 }
 
-/* 📦 PAGE WRAPPER (MORE AIR = IMPORTANT) */
+/* 📦 PAGE WRAPPER */
 .container {
-  padding: 60px 20px;
+  padding: 90px 20px;
   text-align: center;
 }
 
-/* 🌤️ TODAY HERO SECTION (MADE MORE “LANDING PAGE”) */
+/* 🌤️ TODAY HERO SECTION */
 .today-card {
   max-width: 780px;
-  margin: 80px auto;   /* 👈 BIG SCROLL SPACE */
-  padding: 45px;
+  margin: 110px auto;
+  padding: 50px;
 
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -81,7 +81,7 @@ body {
   font-size: 1.1rem;
 }
 
-/* ⚽🏊 ACTIVITIES BOX */
+/* ⚽🏊 ACTIVITIES BOX (FIXED CROPPING) */
 .activity-box {
   margin-top: 20px;
   padding: 16px;
@@ -92,24 +92,30 @@ body {
 
   backdrop-filter: blur(10px);
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.6;
+
+  white-space: pre-line; /* 🔥 FIX: multiline readability */
+  text-align: left;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* 📅 SUBTITLE (FOR SCROLL HINT) */
+/* 📅 SUBTITLE (SCROLL BREAK) */
 .subtitle {
-  margin-top: 120px;  /* 👈 CREATES SCROLL BREAK */
+  margin-top: 150px;
   opacity: 0.75;
   font-size: 1rem;
 }
 
-/* 📊 FORECAST SECTION (CLEAR SECOND PAGE FEEL) */
+/* 📊 FORECAST SECTION */
 .forecast {
-  margin-top: 50px;
-  padding-bottom: 80px; /* 👈 ENDING SPACE */
+  margin-top: 60px;
+  padding-bottom: 100px;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 14px;
+  gap: 16px;
 
   max-width: 1100px;
   margin-left: auto;
@@ -137,24 +143,29 @@ body {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* spacing inside cards */
+.day div {
+  margin: 4px 0;
+}
+
 /* 🌡️ DAY TEMP */
 .day-temp {
   font-weight: 600;
   margin-top: 6px;
 }
 
-/* 📱 RESPONSIVE DESIGN */
+/* 📱 RESPONSIVE */
 @media (max-width: 900px) {
   .temp {
     font-size: 4rem;
   }
 
-  .today-card {
-    margin: 60px auto;
-  }
-
   .forecast {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .today-card {
+    margin: 80px auto;
   }
 }
 

@@ -1,1 +1,196 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: white;
 
+  background-image: url("about.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 🌫️ OVERLAY */
+.overlay {
+  min-height: 100vh;
+  background: rgba(0,0,0,0.82);
+}
+
+/* 🔝 NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  padding: 15px;
+  flex-wrap: wrap;
+
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(10px);
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: 0.2s;
+}
+
+.navbar a:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+/* 📦 CONTAINER */
+.container {
+  padding: 40px 20px 120px;
+}
+
+/* 🌍 TITLE */
+.page-title {
+  text-align: center;
+  margin: 60px 0;
+  font-size: 2.2rem;
+}
+
+/* =========================
+   🕰️ TIMELINE CORE
+========================= */
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* 🔥 CENTER LINE */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.18);
+}
+
+/* =========================
+   📍 TIMELINE ITEM
+========================= */
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin: 90px 0;
+  position: relative;
+}
+
+/* LEFT SIDE */
+.timeline-item.left {
+  justify-content: flex-end;
+}
+
+/* RIGHT SIDE */
+.timeline-item.right {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+/* =========================
+   🔵 DOT (CENTER ICON)
+========================= */
+
+.dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+
+  background: rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+
+  backdrop-filter: blur(12px);
+
+  z-index: 2;
+  transition: 0.3s ease;
+}
+
+/* =========================
+   📦 CONTENT CARD
+========================= */
+
+.content {
+  width: 42%;
+  padding: 22px;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+
+  transition: 0.3s ease;
+  line-height: 1.6;
+}
+
+.content:hover {
+  transform: scale(1.04);
+  background: rgba(255,255,255,0.11);
+}
+
+/* =========================
+   ✨ SCROLL ANIMATION
+   (works with about.js)
+========================= */
+
+.fade {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.8s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   📱 MOBILE FIX
+========================= */
+
+@media (max-width: 800px) {
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start;
+    margin: 70px 0;
+  }
+
+  .dot {
+    left: 20px;
+    transform: none;
+  }
+
+  .content {
+    width: 90%;
+    margin-left: 50px;
+  }
+}

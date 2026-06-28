@@ -130,7 +130,7 @@ fetch(url)
         <div style="font-size:0.8rem; opacity:0.85; margin-top:6px;">
           🏊 ${s.swim}/10 ⚽ ${s.outside}/10
         </div>
-        ${isBest ? `<div style="margin-top:6px; font-weight:700;">🏆 BEST DAY</div>` : ""}
+        ${isBest ? `<div style="margin-top:6px; font-weight:700;">🏆 BESTE DAG</div>` : ""}
       `;
 
       forecastDiv.appendChild(el);

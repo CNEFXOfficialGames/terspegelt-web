@@ -18,13 +18,12 @@ function getWeatherText(code) {
 
 // 🌧️ FORMAT
 function rainText(value) {
-  return `${value}% kans op regen 🌧️`;
+  return `${Math.round(value)}% kans op regen 🌧️`;
 }
 
-// 🔥 ACTIVITY SCORES (0–10 SYSTEM)
+// 🔥 ACTIVITY SCORES
 function calcScores(temp, rain, wind) {
 
-  // 🌡️ swimming score
   let swim = 0;
   if (temp >= 28) swim += 10;
   else if (temp >= 24) swim += 8;
@@ -35,14 +34,12 @@ function calcScores(temp, rain, wind) {
   swim -= wind / 15;
   swim = Math.max(0, Math.min(10, Math.round(swim)));
 
-  // ⚽ outside score
   let outside = 10;
   outside -= rain / 10;
   outside -= wind / 20;
   if (temp < 15) outside -= 3;
   outside = Math.max(0, Math.min(10, Math.round(outside)));
 
-  // 🏠 indoor score
   let indoor = 10 - outside;
   indoor = Math.max(0, Math.min(10, indoor));
 
@@ -53,8 +50,8 @@ function calcScores(temp, rain, wind) {
 function getVibe(score) {
   if (score >= 8) return "🔥 Perfecte dag!";
   if (score >= 6) return "😊 Goede dag";
-  if (score >= 4) return "😐 Prima";
-  return "🌧️ Niet ideaal";
+  if (score >= 4) return "😐 Prima dag";
+  return "🌧️ Niet ideaal vandaag";
 }
 
 // 🚀 FETCH WEATHER
@@ -71,7 +68,7 @@ fetch(url)
     // ======================
     // 🌤️ TODAY
     // ======================
-    const tTemp = temps[0];
+    const tTemp = Math.round(temps[0]);
     const tRain = rain[0];
     const tWind = wind[0];
     const tCode = codes[0];
@@ -79,13 +76,13 @@ fetch(url)
     const scores = calcScores(tTemp, tRain, tWind);
     const vibeScore = Math.round((scores.swim + scores.outside) / 2);
 
-    document.getElementById("temp").innerText = `${Math.round(tTemp)}°C`;
+    document.getElementById("temp").innerText = `${tTemp}°C`;
 
     document.getElementById("weatherInfo").innerText =
       `${getWeatherText(tCode)} — ${rainText(tRain)} — 💨 ${Math.round(tWind)} km/h wind`;
 
     document.getElementById("activityAdvice").innerText =
-      `🏊 Zwemmen: ${scores.swim}/10
+`🏊 Zwemmen: ${scores.swim}/10
 ⚽ Buiten: ${scores.outside}/10
 🏠 Binnen: ${scores.indoor}/10
 🔥 Vibe: ${getVibe(vibeScore)}`;
@@ -119,7 +116,7 @@ fetch(url)
       const day = date.getDate();
       const month = date.toLocaleDateString("nl-NL", { month: "long" });
 
-      const scores = calcScores(temps[i], rain[i], wind[i]);
+      const s = calcScores(temps[i], rain[i], wind[i]);
       const isBest = i === bestDayIndex;
 
       const el = document.createElement("div");
@@ -129,13 +126,11 @@ fetch(url)
         <div>${weekday}. ${day} ${month}</div>
         <div>${getWeatherText(codes[i])}</div>
         <div class="day-temp">${Math.round(temps[i])}°C</div>
-        <div style="font-size:0.8rem; opacity:0.8;">
-          ${rainText(rain[i])}
+        <div>${rainText(rain[i])}</div>
+        <div style="font-size:0.8rem; opacity:0.85; margin-top:6px;">
+          🏊 ${s.swim}/10 ⚽ ${s.outside}/10
         </div>
-        <div style="margin-top:5px; font-size:0.75rem;">
-          🏊 ${scores.swim}/10 ⚽ ${scores.outside}/10
-        </div>
-        ${isBest ? `<div style="margin-top:5px;">🏆 BEST DAY</div>` : ""}
+        ${isBest ? `<div style="margin-top:6px; font-weight:700;">🏆 BEST DAY</div>` : ""}
       `;
 
       forecastDiv.appendChild(el);

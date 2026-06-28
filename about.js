@@ -1,13 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // =========================
-  // 🌍 SELECT ALL SECTIONS
+  // ✨ FADE IN TIMELINE ITEMS
   // =========================
-  const sections = document.querySelectorAll("h2, p, .highlight");
+  const items = document.querySelectorAll(".timeline-item");
 
-  // =========================
-  // ✨ SCROLL FADE-IN
-  // =========================
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -15,12 +12,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, {
-    threshold: 0.15
+    threshold: 0.2
   });
 
-  sections.forEach(el => {
-    el.classList.add("fade");
-    observer.observe(el);
+  items.forEach(item => {
+    observer.observe(item);
+  });
+
+  // =========================
+  // 🔵 DOT HIGHLIGHT ON SCROLL
+  // =========================
+  const dots = document.querySelectorAll(".dot");
+
+  window.addEventListener("scroll", () => {
+    items.forEach((item, i) => {
+      const rect = item.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight * 0.6 && rect.bottom > 0) {
+        dots[i].style.transform = "translateX(-50%) scale(1.2)";
+        dots[i].style.boxShadow = "0 0 20px rgba(255,255,255,0.3)";
+      } else {
+        dots[i].style.transform = "translateX(-50%) scale(1)";
+        dots[i].style.boxShadow = "none";
+      }
+    });
   });
 
   // =========================
@@ -28,18 +43,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const btn = document.createElement("button");
   btn.innerText = "⬆️ Naar boven";
-  btn.style.position = "fixed";
-  btn.style.bottom = "25px";
-  btn.style.right = "25px";
-  btn.style.padding = "12px 16px";
-  btn.style.borderRadius = "12px";
-  btn.style.border = "none";
-  btn.style.cursor = "pointer";
-  btn.style.background = "rgba(255,255,255,0.12)";
-  btn.style.color = "white";
-  btn.style.backdropFilter = "blur(10px)";
-  btn.style.display = "none";
-  btn.style.zIndex = "999";
+
+  Object.assign(btn.style, {
+    position: "fixed",
+    bottom: "25px",
+    right: "25px",
+    padding: "12px 16px",
+    borderRadius: "12px",
+    border: "none",
+    cursor: "pointer",
+    background: "rgba(255,255,255,0.12)",
+    color: "white",
+    backdropFilter: "blur(10px)",
+    display: "none",
+    zIndex: "999"
+  });
 
   document.body.appendChild(btn);
 
@@ -48,11 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      btn.style.display = "block";
-    } else {
-      btn.style.display = "none";
-    }
+    btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
 });

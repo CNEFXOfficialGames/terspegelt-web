@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Weer | TerSpegelt Hub</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+
+      background-image: url("kaart.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      min-height: 100vh;
+      background: rgba(0,0,0,0.82);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 15px;
+      flex-wrap: wrap;
+
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.85;
+      transition: 0.2s;
+    }
+
+    .navbar a:hover {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    /* CONTAINER */
+    .container {
+      padding: 30px;
+      text-align: center;
+    }
+
+    /* TODAY CARD (BIG) */
+    .today-card {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 30px;
+
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .temp {
+      font-size: 4rem;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+
+    .weather-info {
+      opacity: 0.85;
+      margin-bottom: 15px;
+    }
+
+    .swim-box {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* TEXT */
+    .subtitle {
+      margin-top: 20px;
+      opacity: 0.8;
+    }
+
+    /* 7 DAY GRID */
+    .forecast {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .day {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 10px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .day-temp {
+      font-weight: 600;
+      margin-top: 5px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="countdown.html">Countdown</a>
+    <a href="map.html">Kaart</a>
+    <a href="weather.html">Weer</a>
+    <a href="pics.html">Foto’s</a>
+    <a href="about.html">Over</a>
+    <a href="faciliteiten.html">Faciliteiten</a>
+    <a href="openingstijden.html">Openingstijden</a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+
+    <!-- TODAY -->
+    <div class="today-card">
+      <h1>🌤️ Vandaag</h1>
+
+      <div class="temp" id="temp">--°C</div>
+
+      <div class="weather-info" id="weatherInfo">
+        Laden van weerdata...
+      </div>
+
+      <div class="swim-box" id="swimAdvice">
+        Zwemadvies wordt geladen...
+      </div>
+    </div>
+
+    <div class="subtitle">
+      Kijk hieronder voor de komende 7 dagen 👇
+    </div>
+
+    <!-- 7 DAY FORECAST -->
+    <div class="forecast" id="forecast">
+      <!-- JS fills this later -->
+    </div>
+
+  </div>
+
+</div>
+
+<script src="weather.js"></script>
+
+</body>
+</html>

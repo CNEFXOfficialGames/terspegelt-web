@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Over TerSpegelt</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+
+      background-image: url("about.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      min-height: 100vh;
+      background: rgba(0,0,0,0.82);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 15px;
+      flex-wrap: wrap;
+
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.85;
+      transition: 0.2s;
+    }
+
+    .navbar a:hover {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    /* CONTAINER */
+    .container {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    /* MAIN CARD */
+    .card {
+      max-width: 850px;
+      margin: 80px auto;
+      padding: 40px;
+
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.9;
+    }
+
+    .highlight {
+      margin-top: 20px;
+      padding: 15px;
+
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="countdown.html">Countdown</a>
+    <a href="map.html">Kaart</a>
+    <a href="weather.html">Weer</a>
+    <a href="pics.html">Foto’s</a>
+    <a href="about.html">Over</a>
+    <a href="faciliteiten.html">Faciliteiten</a>
+    <a href="openingstijden.html">Openingstijden</a>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+
+    <div class="card">
+
+      <h1>🌍 Het verhaal van TerSpegelt</h1>
+
+      <h2>🌱 Het ontstaan</h2>
+      <p>
+        TerSpegelt is ontstaan als een recreatiegebied in de natuur, met als doel mensen een plek te geven om te zwemmen, spelen en ontspannen.
+        In het begin was het een eenvoudige locatie met vooral water en open ruimte, bedoeld voor lokale bezoekers.
+      </p>
+
+      <h2>📈 Groei door de jaren heen</h2>
+      <p>
+        Door de jaren heen is TerSpegelt steeds verder ontwikkeld. Wat begon als een klein recreatiegebied, groeide uit tot een groot vakantiepark met verschillende activiteiten en voorzieningen.
+      </p>
+      <p>
+        Er kwamen steeds meer mogelijkheden bij, zoals uitgebreide zwemzones, speelgebieden, sportvelden en plekken om te kamperen.
+        Hierdoor werd het park steeds populairder bij gezinnen, jongeren en vakantiegangers.
+      </p>
+
+      <h2>🏕️ TerSpegelt vandaag</h2>
+      <p>
+        Vandaag de dag is TerSpegelt een modern recreatiepark waar water, natuur en activiteiten centraal staan.
+        Bezoekers kunnen er zwemmen, sporten, spelen of gewoon ontspannen in een natuurlijke omgeving.
+      </p>
+
+      <h2>🌞 De sfeer</h2>
+      <p>
+        TerSpegelt draait vooral om buiten zijn en samen genieten. Het is een plek waar mensen herinneringen maken,
+        van actieve dagen vol sport en spel tot rustige momenten aan het water of op de camping.
+      </p>
+
+      <div class="highlight">
+        🌊 TerSpegelt staat bekend om vrijheid, buitenleven en een sterke band met natuur en water.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaart | TerSpegelt Hub</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+
+      background-image: url("terspegelt.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      min-height: 100vh;
+      background: rgba(0,0,0,0.78);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      padding: 15px;
+      flex-wrap: wrap;
+
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      opacity: 0.85;
+      transition: 0.2s;
+    }
+
+    .navbar a:hover {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+
+    /* CENTER */
+    .container {
+      min-height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* INTRO CARD */
+    .intro {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 40px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      max-width: 500px;
+      transition: 0.4s ease;
+    }
+
+    .intro h1 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .intro p {
+      opacity: 0.8;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      color: white;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* MAP SECTION */
+    .map-section {
+      display: none;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .map-box {
+      margin: auto;
+      max-width: 1000px;
+      height: 650px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+      transition: 0.4s ease;
+    }
+
+    .show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="countdown.html">Countdown</a>
+    <a href="map.html">Kaart</a>
+    <a href="weather.html">Weer</a>
+    <a href="pics.html">Foto’s</a>
+    <a href="about.html">Over</a>
+    <a href="faciliteiten.html">Faciliteiten</a>
+    <a href="openingstijden.html">Openingstijden</a>
+  </div>
+
+  <!-- INTRO -->
+  <div class="container" id="intro">
+    <div class="intro">
+      <h1>🗺️ TerSpegelt Plattegrond</h1>
+      <p>Ontdek het park.</p>
+      <button class="btn" onclick="startMap()">Start verkennen</button>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div class="map-section" id="mapSection">
+    <div class="map-box">
+      <iframe 
+        src="https://www.terspegelt.nl/plattegrond#open"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function startMap() {
+    document.getElementById("intro").classList.add("fade-out");
+
+    setTimeout(() => {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("mapSection").classList.add("show");
+    }, 400);
+  }
+</script>
+
+</body>
+</html>

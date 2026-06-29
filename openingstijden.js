@@ -1,3 +1,39 @@
+
+// =========================
+// 🧠 WEEK SYSTEM (FIXED RANGE LOGIC)
+// =========================
+
+const week = ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"];
+
+function expandDays(range) {
+  if (!range) return [];
+
+  range = range.trim();
+
+  // single day fixes
+  if (!range.includes("-")) {
+    if (range === "Vrij") return ["Vr"];
+    if (range === "Zaterdag") return ["Za"];
+    if (range === "Zondag") return ["Zo"];
+    return [range];
+  }
+
+  const [start, end] = range.split("-").map(s => s.trim());
+
+  const startIndex = week.indexOf(start);
+  const endIndex = week.indexOf(end);
+
+  if (startIndex === -1 || endIndex === -1) return [];
+
+  const result = [];
+
+  for (let i = startIndex; i <= endIndex; i++) {
+    result.push(week[i]);
+  }
+
+  return result;
+}
+
 // =========================
 // 🕒 OPENINGSTIJDEN DATA
 // =========================
@@ -6,9 +42,7 @@ const openingData = {
   juni: {
     receptie: {
       name: "☎️ Receptie",
-      schedule: [
-        { days: "Ma - Zo", open: "09:00", close: "18:00" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "09:00", close: "18:00" }]
     },
 
     zwembad: {
@@ -16,15 +50,12 @@ const openingData = {
       schedule: [
         { days: "Ma - Do", open: "10:00", close: "18:00" },
         { days: "Vr - Zo", open: "10:00", close: "20:00" }
-      ],
-      exception: "24-27 juni: 10:00 - 15:00 (hitte)"
+      ]
     },
 
     bowling: {
       name: "🎳 Bowling",
-      schedule: [
-        { days: "Ma - Zo", open: "13:00", close: "21:00" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "13:00", close: "21:00" }]
     },
 
     supermarkt: {
@@ -61,8 +92,7 @@ const openingData = {
         { days: "Wo - Do", open: "11:00", close: "22:00" },
         { days: "Vrij - Za", open: "11:00", close: "23:00" },
         { days: "Zo", open: "11:00", close: "22:00" }
-      ],
-      closedDays: "Ma & Di"
+      ]
     },
 
     pizza: {
@@ -76,9 +106,7 @@ const openingData = {
 
     ijs: {
       name: "🍦 LekkerMakkelijk IJs",
-      schedule: [
-        { days: "Ma - Zo", open: "12:00", close: "20:30" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "12:00", close: "20:30" }]
     },
 
     snacken: {
@@ -93,59 +121,42 @@ const openingData = {
   juli: {
     receptie: {
       name: "☎️ Receptie",
-      schedule: [
-        { days: "Ma - Zo", open: "09:00", close: "20:00" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "09:00", close: "20:00" }]
     },
 
     zwembad: {
       name: "🏊 Zwembad & SterrenStrand",
-      schedule: [
-        { days: "Ma - Zo", open: "10:00", close: "20:00" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "10:00", close: "20:00" }]
     },
 
     supermarkt: {
       name: "🏪 Supermarkt",
-      schedule: [
-        { days: "Ma - Zo", open: "08:00", close: "19:00" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "08:00", close: "19:00" }]
     },
 
     wijdeBlick: {
       name: "🍽️ De Wijde Blick",
-      schedule: [
-        { days: "Ma - Zo", open: "11:00", close: "21:30" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "11:00", close: "21:30" }]
     },
 
     keukenBlick: {
       name: "🍳 Keuken De Wijde Blick",
-      schedule: [
-        { days: "Ma - Zo", open: "12:00", close: "20:30" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "12:00", close: "20:30" }]
     },
 
     keizer: {
       name: "🍔 De Keizer",
-      schedule: [
-        { days: "Wo - Zo", open: "11:00", close: "23:00" }
-      ],
-      closedDays: "Ma & Di"
+      schedule: [{ days: "Wo - Zo", open: "11:00", close: "23:00" }]
     },
 
     pizza: {
       name: "🍕 LekkerMakkelijk Pizza",
-      schedule: [
-        { days: "Ma - Zo", open: "12:00", close: "20:30" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "12:00", close: "20:30" }]
     },
 
     ijs: {
       name: "🍦 LekkerMakkelijk IJs",
-      schedule: [
-        { days: "Ma - Zo", open: "12:00", close: "20:30" }
-      ]
+      schedule: [{ days: "Ma - Zo", open: "12:00", close: "20:30" }]
     }
   }
 };
@@ -154,37 +165,35 @@ const openingData = {
 // ⏰ TIME HELPERS
 // =========================
 
-function timeToMinutes(time) {
-  const [h, m] = time.split(":").map(Number);
+function timeToMinutes(t) {
+  const [h, m] = t.split(":").map(Number);
   return h * 60 + m;
 }
 
-function getCurrentMinutes() {
-  const now = new Date();
-  return now.getHours() * 60 + now.getMinutes();
+function nowMinutes() {
+  const n = new Date();
+  return n.getHours() * 60 + n.getMinutes();
 }
 
-// =========================
-// 🟢 LIVE STATUS CHECK
-// =========================
-
-function isOpenNow(open, close) {
-  const now = getCurrentMinutes();
+function isOpen(open, close) {
+  const now = nowMinutes();
   return now >= timeToMinutes(open) && now <= timeToMinutes(close);
 }
 
+function isOpenAdvanced(schedule) {
+  if (!schedule) return false;
+
+  return schedule.some(s => isOpen(s.open, s.close));
+}
+
 // =========================
-// 📅 GET SELECTED MONTH
+// 🌍 STATE
 // =========================
 
 let currentMonth = "juni";
 
 // =========================
-// PART 2 STARTS BELOW
-// =========================
-
-// =========================
-// 🟦 FACILITY LIST (ORDER)
+// 🧩 FACILITY ORDER
 // =========================
 
 const facilitiesOrder = [
@@ -201,7 +210,7 @@ const facilitiesOrder = [
 ];
 
 // =========================
-// 📍 RENDER "VANDAAG" CARDS
+// 🟢 TODAY CARDS
 // =========================
 
 function renderToday() {
@@ -213,28 +222,24 @@ function renderToday() {
   const data = openingData[currentMonth];
 
   facilitiesOrder.forEach(key => {
-    const facility = data[key];
-    if (!facility) return;
+    const f = data[key];
+    if (!f) return;
 
-    let openNow = false;
+    const openNow = isOpenAdvanced(f.schedule);
 
-    // check first matching schedule rule
-    if (facility.schedule && facility.schedule.length > 0) {
-      const rule = facility.schedule[0];
-      openNow = isOpenNow(rule.open, rule.close);
-    }
+    const scheduleText = f.schedule
+      .map(s => `${s.days}: ${s.open} - ${s.close}`)
+      .join("<br>");
 
     const card = document.createElement("div");
     card.className = "mini-card " + (openNow ? "open" : "closed");
 
     card.innerHTML = `
       <div class="status">
-        ${openNow ? "🟢 NU GEOPEND" : "🔴 NU GESLOTEN"}
+        ${openNow ? "🟢 GEOPEND" : "🔴 GESLOTEN"}
       </div>
-      <div class="name">${facility.name}</div>
-      <div class="hours">
-        ${facility.schedule?.map(s => `${s.days}: ${s.open} - ${s.close}`).join("<br>") || ""}
-      </div>
+      <div class="name">${f.name}</div>
+      <div class="hours">${scheduleText}</div>
     `;
 
     grid.appendChild(card);
@@ -242,7 +247,7 @@ function renderToday() {
 }
 
 // =========================
-// 📅 RENDER 7 DAY GRID
+// 📅 WEEK VIEW
 // =========================
 
 function renderWeek() {
@@ -252,26 +257,28 @@ function renderWeek() {
   grid.innerHTML = "";
 
   const days = ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"];
+  const today = days[new Date().getDay() - 1] || "Ma";
 
-  days.forEach(day => {
+  days.forEach(d => {
     const card = document.createElement("div");
-    card.className = "week-card";
+
+    const isToday = d === today;
+
+    card.className = "week-card" + (isToday ? " today" : "");
 
     card.innerHTML = `
-      <div class="day">${day}</div>
-      <div class="hint">Klik om details te zien</div>
+      <div class="day">${d}</div>
+      <div class="hint">${isToday ? "Vandaag" : "Klik voor details"}</div>
     `;
 
-    card.addEventListener("click", () => {
-      renderDayDetails(day);
-    });
+    card.onclick = () => renderDayDetails(d);
 
     grid.appendChild(card);
   });
 }
 
 // =========================
-// 📆 RENDER DAY DETAILS
+// 📆 DAY DETAILS
 // =========================
 
 function renderDayDetails(day) {
@@ -280,31 +287,31 @@ function renderDayDetails(day) {
 
   if (!grid || !title) return;
 
-  title.textContent = day;
+  title.textContent = `📅 ${day}`;
 
   const data = openingData[currentMonth];
+
   grid.innerHTML = "";
 
   facilitiesOrder.forEach(key => {
-    const facility = data[key];
-    if (!facility) return;
+    const f = data[key];
+    if (!f) return;
 
-    let match = facility.schedule?.find(s => s.days.includes(day));
+    const match = f.schedule.find(s =>
+      expandDays(s.days).includes(day)
+    );
 
     const card = document.createElement("div");
     card.className = "card";
 
     if (match) {
-      const openNow = isOpenNow(match.open, match.close);
-
       card.innerHTML = `
-        <h3>${facility.name}</h3>
-        <p>${openNow ? "🟢 NU GEOPEND" : "🔴 NU GESLOTEN"}</p>
+        <h3>${f.name}</h3>
         <p>${match.open} - ${match.close}</p>
       `;
     } else {
       card.innerHTML = `
-        <h3>${facility.name}</h3>
+        <h3>${f.name}</h3>
         <p>Niet geopend op ${day}</p>
       `;
     }
@@ -321,29 +328,16 @@ function setupMonthSwitch() {
   const buttons = document.querySelectorAll(".month");
 
   buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
+    btn.onclick = () => {
       buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
-      currentMonth = btn.dataset.month;
+      currentMonth = btn.dataset.month || "juni";
 
       renderToday();
       renderWeek();
-      clearDetails();
-    });
+    };
   });
-}
-
-// =========================
-// 🧹 CLEAR DETAILS
-// =========================
-
-function clearDetails() {
-  const grid = document.getElementById("detailsGrid");
-  const title = document.getElementById("selectedDay");
-
-  if (grid) grid.innerHTML = "";
-  if (title) title.textContent = "Selecteer een dag";
 }
 
 // =========================
@@ -354,193 +348,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupMonthSwitch();
   renderToday();
   renderWeek();
-  clearDetails();
 
-  // auto refresh every hour
-  setInterval(() => {
-    renderToday();
-    renderWeek();
-  }, 3600000);
-});
-
-// =========================
-// PART 3 STARTS BELOW
-// =========================
-
-// =========================
-// 🧠 BETTER OPEN LOGIC (FIXED)
-// =========================
-
-// fixes issue where only first schedule rule was used
-function isOpenNowAdvanced(scheduleArray) {
-  const now = getCurrentMinutes();
-
-  if (!scheduleArray) return false;
-
-  return scheduleArray.some(rule => {
-    const open = timeToMinutes(rule.open);
-    const close = timeToMinutes(rule.close);
-    return now >= open && now <= close;
-  });
-}
-
-// =========================
-// 🟦 UPDATE TODAY (FIXED VERSION)
-// =========================
-
-function renderToday() {
-  const grid = document.getElementById("todayGrid");
-  if (!grid) return;
-
-  grid.innerHTML = "";
-
-  const data = openingData[currentMonth];
-
-  facilitiesOrder.forEach(key => {
-    const facility = data[key];
-    if (!facility) return;
-
-    const openNow = isOpenNowAdvanced(facility.schedule);
-
-    const card = document.createElement("div");
-    card.className = "mini-card " + (openNow ? "open" : "closed");
-
-    let scheduleText = "";
-
-    if (facility.schedule) {
-      scheduleText = facility.schedule
-        .map(s => `${s.days}: ${s.open} - ${s.close}`)
-        .join("<br>");
-    }
-
-    card.innerHTML = `
-      <div class="status">
-        ${openNow ? "🟢 NU GEOPEND" : "🔴 NU GESLOTEN"}
-      </div>
-
-      <div class="name">
-        ${facility.name}
-      </div>
-
-      <div class="hours">
-        ${scheduleText}
-      </div>
-    `;
-
-    grid.appendChild(card);
-  });
-}
-
-// =========================
-// 📅 HIGHLIGHT TODAY IN WEEK
-// =========================
-
-function getTodayShort() {
-  const days = ["Zo", "Ma", "Di", "Wo", "Do", "Vr", "Za"];
-  return days[new Date().getDay()];
-}
-
-function renderWeek() {
-  const grid = document.getElementById("weekGrid");
-  if (!grid) return;
-
-  grid.innerHTML = "";
-
-  const days = ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"];
-  const today = getTodayShort();
-
-  days.forEach(day => {
-    const card = document.createElement("div");
-
-    let isToday = day === today;
-
-    card.className = "week-card" + (isToday ? " today" : "");
-
-    card.innerHTML = `
-      <div class="day">${day}</div>
-      <div class="hint">${isToday ? "Vandaag" : "Klik voor details"}</div>
-    `;
-
-    card.addEventListener("click", () => {
-      renderDayDetails(day);
-    });
-
-    grid.appendChild(card);
-  });
-}
-
-// =========================
-// 📆 IMPROVED DAY DETAILS
-// =========================
-
-function renderDayDetails(day) {
-  const title = document.getElementById("selectedDay");
-  const grid = document.getElementById("detailsGrid");
-
-  if (!grid || !title) return;
-
-  title.textContent = `📅 ${day}`;
-
-  const data = openingData[currentMonth];
-  grid.innerHTML = "";
-
-  facilitiesOrder.forEach(key => {
-    const facility = data[key];
-    if (!facility) return;
-
-    const match = facility.schedule?.find(s => s.days.includes(day));
-
-    const card = document.createElement("div");
-    card.className = "card";
-
-    if (match) {
-      const openNow = isOpenNow(match.open, match.close);
-
-      card.innerHTML = `
-        <h3>${facility.name}</h3>
-
-        <p>
-          ${openNow ? "🟢 Nu geopend" : "🔴 Gesloten"}
-        </p>
-
-        <p class="hours">
-          Vandaag: ${match.open} - ${match.close}
-        </p>
-      `;
-    } else {
-      card.innerHTML = `
-        <h3>${facility.name}</h3>
-        <p>Niet geopend op deze dag</p>
-      `;
-    }
-
-    grid.appendChild(card);
-  });
-}
-
-// =========================
-// 🔄 SAFETY RE-INIT FIX
-// =========================
-
-function refreshAll() {
-  renderToday();
-  renderWeek();
-  clearDetails();
-}
-
-// =========================
-// 🚀 FINAL INIT
-// =========================
-
-document.addEventListener("DOMContentLoaded", () => {
-  setupMonthSwitch();
-
-  renderToday();
-  renderWeek();
-  clearDetails();
-
-  // hourly refresh (keeps "Nu geopend" correct)
-  setInterval(() => {
-    renderToday();
-  }, 3600000);
+  setInterval(renderToday, 3600000);
 });

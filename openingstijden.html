@@ -1,165 +1,186 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <title>Openingstijden | TerSpegelt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Openingstijden | TerSpegelt</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="openingstijden.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="openingstijden.css">
 </head>
 
 <body>
 
 <div class="overlay">
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="countdown.html">Countdown</a>
-    <a href="map.html">Kaart</a>
-    <a href="weather.html">Weer</a>
-    <a href="pics.html">Foto’s</a>
-    <a href="about.html">Over</a>
-    <a href="faciliteiten.html">Faciliteiten</a>
-    <a href="openingstijden.html">Openingstijden</a>
-  </div>
-
-  <div class="container">
-
-    <!-- TITLE -->
-    <h1 class="page-title">🕒 Openingstijden</h1>
-
-    <!-- MONTH SELECTOR -->
-    <div class="month-selector">
-      <button class="month active">📅 Juni</button>
-      <button class="month">📅 Juli</button>
-    </div>
-
     <!-- ========================= -->
-    <!-- 🟦 TODAY CARD -->
-    <!-- ========================= -->
-    <div class="today-card">
-
-      <h2>📍 Vandaag</h2>
-
-      <div class="mini-grid">
-
-        <div class="mini-card open">
-          🏊 Zwembad & SterrenStrand<br>
-          <small>Check live status</small>
-        </div>
-
-        <div class="mini-card open">
-          🏪 Supermarkt<br>
-          <small>Check live status</small>
-        </div>
-
-        <div class="mini-card open">
-          🍽️ Wijde Blick<br>
-          <small>Check live status</small>
-        </div>
-
-        <div class="mini-card closed">
-          🎳 Bowling<br>
-          <small>Check live status</small>
-        </div>
-
-        <div class="mini-card open">
-          ☎️ Receptie<br>
-          <small>Check live status</small>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ========================= -->
-    <!-- 📅 FULL SCHEDULE SECTION -->
+    <!-- NAVBAR -->
     <!-- ========================= -->
 
-    <h2 class="subtitle">📅 Volledig overzicht</h2>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="map.html">Kaart</a>
+        <a href="weather.html">Weer</a>
+        <a href="pics.html">Foto's</a>
+        <a href="about.html">Over</a>
+        <a href="faciliteiten.html">Faciliteiten</a>
+        <a href="openingstijden.html">Openingstijden</a>
+    </nav>
 
-    <div class="schedule">
+    <main class="container">
 
-      <!-- RECEPTIE -->
-      <div class="card">
-        <h3>☎️ Receptie</h3>
-        <p>Ma - Zo: 9:00 - 18:00</p>
-        <p>Telefonisch / WhatsApp bereikbaar</p>
-      </div>
+        <!-- ========================= -->
+        <!-- PAGE TITLE -->
+        <!-- ========================= -->
 
-      <!-- ZWEMBAD -->
-      <div class="card">
-        <h3>🏊 Zwembad & SterrenStrand</h3>
-        <p>Ma - Do: 10:00 - 18:00</p>
-        <p>Vr - Zo: 10:00 - 20:00</p>
-        <p class="note">⚠️ Hitte uitzondering 24–27 juni: 10:00 - 15:00</p>
-      </div>
+        <h1 class="page-title">🕒 Openingstijden</h1>
 
-      <!-- BOWLING -->
-      <div class="card">
-        <h3>🎳 Bowling</h3>
-        <p>Ma - Zo: 13:00 - 21:00</p>
-      </div>
+        <p class="page-description">
+            Bekijk live welke faciliteiten momenteel geopend zijn en ontdek de openingstijden voor de komende dagen.
+        </p>
 
-      <!-- SUPERMARKT -->
-      <div class="card">
-        <h3>🏪 Supermarkt</h3>
-        <p>Ma - Do: 08:00 - 18:00</p>
-        <p>Vrij: 08:00 - 19:00</p>
-        <p>Za: 08:00 - 18:00</p>
-        <p>Zo: 08:00 - 17:00</p>
-      </div>
+        <!-- ========================= -->
+        <!-- MONTH SWITCH -->
+        <!-- ========================= -->
 
-      <!-- WIJDE BLICK -->
-      <div class="card">
-        <h3>🍽️ Strandpaviljoen De Wijde Blick</h3>
-        <p>Ma - Do: 12:00 - 20:30</p>
-        <p>Vrij - Za: 12:00 - 21:00</p>
-        <p>Zo: 12:00 - 20:30</p>
-      </div>
+        <div class="month-selector">
 
-      <!-- KEUKEN -->
-      <div class="card">
-        <h3>🍳 Keuken De Wijde Blick</h3>
-        <p>Ma - Do: 12:00 - 20:00</p>
-        <p>Vrij - Za: 12:00 - 20:30</p>
-        <p>Zo: 12:00 - 20:00</p>
-      </div>
+            <button
+                class="month active"
+                data-month="juni">
 
-      <!-- KEIZER -->
-      <div class="card">
-        <h3>🍔 De Keizer Eten & Drinken</h3>
-        <p>Wo - Do: 11:00 - 22:00</p>
-        <p>Vrij - Za: 11:00 - 23:00</p>
-        <p>Zo: 11:00 - 22:00</p>
-        <p class="note">Ma & Di gesloten</p>
-      </div>
+                📅 Juni
 
-      <!-- PIZZA -->
-      <div class="card">
-        <h3>🍕 LekkerMakkelijk Pizza</h3>
-        <p>Ma - Do: 12:00 - 20:00</p>
-        <p>Vrij - Za: 12:00 - 20:30</p>
-        <p>Zo: 12:00 - 20:00</p>
-      </div>
+            </button>
 
-      <!-- IJS -->
-      <div class="card">
-        <h3>🍦 LekkerMakkelijk IJs</h3>
-        <p>Ma - Zo: 12:00 - 20:30</p>
-      </div>
+            <button
+                class="month"
+                data-month="juli">
 
-      <!-- SNACK -->
-      <div class="card">
-        <h3>🍟 LekkerSnacken</h3>
-        <p>Vrij: 16:00 - 21:00</p>
-        <p>Za - Zo: 12:00 - 20:30</p>
-      </div>
+                📅 Juli
 
-    </div>
+            </button>
 
-  </div>
+        </div>
+
+        <!-- ========================= -->
+        <!-- TODAY HERO -->
+        <!-- ========================= -->
+
+        <section class="today-card">
+
+            <div class="today-header">
+
+                <h2>📍 Vandaag</h2>
+
+                <span id="todayDate">
+                    Maandag 29 juni
+                </span>
+
+            </div>
+
+            <div
+                class="mini-grid"
+                id="todayGrid">
+
+                <!-- JS GENERATES EVERYTHING -->
+
+            </div>
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- NEXT 7 DAYS -->
+        <!-- ========================= -->
+
+        <section class="week-section">
+
+            <h2>
+
+                📅 Komende 7 dagen
+
+            </h2>
+
+            <p class="subtitle">
+
+                Klik op een dag om alle openingstijden van die dag te bekijken.
+
+            </p>
+
+            <div
+                class="week-grid"
+                id="weekGrid">
+
+                <!-- JS -->
+
+            </div>
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- DAY DETAILS -->
+        <!-- ========================= -->
+
+        <section
+            class="day-details"
+            id="dayDetails">
+
+            <div class="details-header">
+
+                <h2 id="selectedDay">
+
+                    Vandaag
+
+                </h2>
+
+                <span id="selectedDate">
+
+                </span>
+
+            </div>
+
+            <div
+                class="details-grid"
+                id="detailsGrid">
+
+                <!-- JS FILLS THIS -->
+
+            </div>
+
+        </section>
+
+        <!-- ========================= -->
+        <!-- INFO -->
+        <!-- ========================= -->
+
+        <section class="info-card">
+
+            <h2>ℹ️ Handige informatie</h2>
+
+            <ul>
+
+                <li>
+                    De live status wordt automatisch ieder uur bijgewerkt.
+                </li>
+
+                <li>
+                    Openingstijden kunnen wijzigen door evenementen of weersomstandigheden.
+                </li>
+
+                <li>
+                    Controleer bij twijfel altijd de officiële TerSpegelt app.
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
 </div>
+
+<script src="openingstijden.js"></script>
 
 </body>
 </html>

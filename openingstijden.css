@@ -6,10 +6,16 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   color: white;
-  background: #0b1220;
+
+  /* 🌄 BACKGROUND IMAGE */
+  background-image: url("openingstijden.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-/* OVERLAY */
+/* 🌫️ DARK OVERLAY */
 .overlay {
   min-height: 100vh;
   background: rgba(0,0,0,0.82);
@@ -88,13 +94,13 @@ body {
 
 .month:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.12);
 }
 
 .month.active {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.18);
   border-color: rgba(255,255,255,0.35);
-  box-shadow: 0 0 15px rgba(255,255,255,0.1);
+  box-shadow: 0 0 18px rgba(255,255,255,0.12);
 }
 
 /* =========================
@@ -111,7 +117,7 @@ body {
   border-radius: 18px;
 
   backdrop-filter: blur(16px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 12px 45px rgba(0,0,0,0.6);
 }
 
 .today-card h2 {
@@ -138,24 +144,24 @@ body {
   border: 1px solid rgba(255,255,255,0.12);
 
   backdrop-filter: blur(10px);
-  transition: 0.2s ease;
+  transition: 0.25s ease;
   font-size: 0.9rem;
   line-height: 1.4;
 }
 
-/* OPEN STATE 🟢 */
+/* OPEN 🟢 */
 .mini-card.open {
-  border-color: rgba(0, 255, 140, 0.4);
-  box-shadow: 0 0 12px rgba(0, 255, 140, 0.15);
+  border-color: rgba(0, 255, 140, 0.45);
+  box-shadow: 0 0 14px rgba(0, 255, 140, 0.18);
 }
 
-/* CLOSED STATE 🔴 */
+/* CLOSED 🔴 */
 .mini-card.closed {
-  border-color: rgba(255, 70, 70, 0.4);
+  border-color: rgba(255, 70, 70, 0.45);
   opacity: 0.75;
 }
 
-/* hover effect */
+/* hover */
 .mini-card:hover {
   transform: translateY(-3px);
 }
@@ -178,7 +184,7 @@ body {
   gap: 16px;
 }
 
-/* BIG INFO CARDS */
+/* BIG CARDS */
 .card {
   padding: 18px;
   border-radius: 16px;
@@ -193,10 +199,10 @@ body {
 
 .card:hover {
   transform: scale(1.02);
-  background: rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.10);
 }
 
-/* IMPORTANT NOTES */
+/* NOTES */
 .note {
   margin-top: 10px;
   font-size: 0.85rem;
